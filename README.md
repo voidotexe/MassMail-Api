@@ -3,7 +3,7 @@
 <img src="https://cdn.countryflags.com/thumbs/brazil/flag-400.png" heigth="30px" width="30px" align="center" /> _API RESTful para usar com o MassMail-Web_<br />
 <img src="https://cdn.countryflags.com/thumbs/united-kingdom/flag-400.png" heigth="30px" width="30px" align="center" /> _RESTful API to use with MassMail-Web_
 
-## Arquitetura / Architeture
+## Design Pattern
 
 <img src="https://cdn.countryflags.com/thumbs/brazil/flag-400.png" heigth="30px" width="30px" align="center" /> <img src="https://cdn.countryflags.com/thumbs/united-kingdom/flag-400.png" heigth="30px" width="30px" align="center" /> Repository Pattern
 
