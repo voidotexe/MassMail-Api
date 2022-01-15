@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using EmailHistory.Repository;
-using EmailHistory.Models;
+﻿/*
+ * By: voidotexe
+ * https://www.github.com/voidotexe
+ */
+
+using Microsoft.AspNetCore.Mvc;
+using EmailHistory.Services;
 using System;
 
 namespace EmailHistory.Controllers
@@ -10,28 +13,21 @@ namespace EmailHistory.Controllers
     [ApiController]
     public class EmailController : ControllerBase
     {
-        private readonly IEmailRepository _emailRepository;
-
-        public EmailController(IEmailRepository emailRepository)
-        {
-            _emailRepository = emailRepository;
-        }
-
-        // GET: api/email/get        
+        private readonly EmailService _emailService = new EmailService();
+        
+        // GET: api/email/get
         [HttpGet("[action]")]
         public IActionResult Get()
         {
-            return Ok(_emailRepository.GetAll());
+            return Ok(_emailService.GetAll());
         }
 
         // POST api/email/create
         [HttpPost("[action]")]
         public IActionResult Create(string from, string to, string subject, string body, DateTime when)
         {
-            if (_emailRepository.Create(from, to, subject, body, when))
-            {
+            if (_emailService.Create(from, to, subject, body, when))
                 return NoContent();
-            }
 
             return StatusCode(500);
         }
@@ -40,7 +36,7 @@ namespace EmailHistory.Controllers
         [HttpDelete("[action]")]
         public IActionResult Delete()
         {
-            _emailRepository.DeleteAll();
+            _emailService.DeleteAll();
 
             return NoContent();
         }
