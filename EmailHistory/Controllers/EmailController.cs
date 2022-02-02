@@ -4,39 +4,45 @@
  */
 
 using Microsoft.AspNetCore.Mvc;
-using EmailHistory.Services;
+using EmailHistory.Repository;
+using EmailHistory.Models;
 using System;
 
 namespace EmailHistory.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class EmailController : ControllerBase
     {
-        private readonly EmailService _emailService = new EmailService();
-        
-        // GET: api/email/get
-        [HttpGet("[action]")]
-        public IActionResult Get()
+        private readonly IDatabaseRepository _databaseRepository;
+
+        public EmailController(IDatabaseRepository databaseRepository)
         {
-            return Ok(_emailService.GetAll());
+            _databaseRepository = databaseRepository;
         }
 
-        // POST api/email/create
-        [HttpPost("[action]")]
+        // GET: email/get
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_databaseRepository.SelectAll());
+        }
+
+        // POST email/create
+        [HttpPost]
         public IActionResult Create(string from, string to, string subject, string body, DateTime when)
         {
-            if (_emailService.Create(from, to, subject, body, when))
+            if (_databaseRepository.Insert(from, to, subject, body, when))
                 return NoContent();
 
             return StatusCode(500);
         }
 
-        // DELETE api/email/delete
-        [HttpDelete("[action]")]
+        // DELETE email/delete
+        [HttpDelete]
         public IActionResult Delete()
         {
-            _emailService.DeleteAll();
+            _databaseRepository.Truncate();
 
             return NoContent();
         }

@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using EmailHistory.Models;
 
 namespace EmailHistory.Repository
 {
@@ -12,10 +13,10 @@ namespace EmailHistory.Repository
     {
         string ConnectionString { get; set; }
 
-        void Insert(string from, string to, string subject, string body, DateTime when);
+        bool Insert(string from, string to, string subject, string body, DateTime when);
 
-        void Truncate(string tableName);
+        void Truncate();
 
-        IEnumerable<T> SelectAll<T>();
+        IEnumerable<Email> SelectAll();
     }
 }
