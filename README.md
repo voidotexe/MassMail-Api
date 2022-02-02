@@ -6,6 +6,6 @@
 ## Métodos HTTP / HTTP methods
 
 <img src="https://cdn.countryflags.com/thumbs/brazil/flag-400.png" heigth="30px" width="30px" align="center" /> <img src="https://cdn.countryflags.com/thumbs/united-kingdom/flag-400.png" heigth="30px" width="30px" align="center" /><br />
-**GET:** /api/email/get<br />
-**POST:** /api/email/create?from=string&to=string&subject=string&body=string&when=DateTime<br />
-**DELETE:** /api/email/delete
+**GET:** email/get<br />
+**POST:** email/create?from=string&to=string&subject=string&body=string&when=DateTime<br />
+**DELETE:** email/delete
